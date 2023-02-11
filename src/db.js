@@ -12,7 +12,7 @@ const con = mysql.createConnection({
 function connect() {
   con.connect(err => {
     if (err) console.log("Error: connect database.");
-    console.log("Database connected.");
+    else console.log("Database connected.");
   });
 }
 
@@ -22,9 +22,7 @@ function execute(sql, fn) {
   });
 
   con.end(err => {
-    if (err) {
-      console.log("Error: close database.");
-    }
+    if (err) console.log("Error: close database.");
     console.log('Database connection closed.');
   });
 }
