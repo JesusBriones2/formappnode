@@ -11,21 +11,21 @@ const con = mysql.createConnection({
 
 function connect() {
   con.connect(err => {
-    if (err) console.log(err);
-    console.log("Connected!");
+    if (err) console.log("Error: connect database.");
+    console.log("Database connected.");
   });
 }
 
 function execute(sql, fn) {
   con.query(sql, (err, rows) => {
-    err ? fn(err) : fn(rows);
+    err ? fn("Error: execute database.") : fn(rows);
   });
 
   con.end(err => {
     if (err) {
-      console.log(err.message);
+      console.log("Error: close database.");
     }
-    console.log('Connection closed');
+    console.log('Database connection closed.');
   });
 }
 

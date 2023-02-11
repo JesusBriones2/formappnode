@@ -28,10 +28,12 @@ app.post('/dataLogin', (req, res) => {
 
   if (username != '' && userpassword != '') {
     db.connect()
-    db.execute(`insert into users values(default, "${username}", "${userpassword}")`, 
+    db.execute(`insert into users values(${process.env.ids}, "${username}", "${userpassword}")`, 
     res => {
       console.log(res);
     })
+
+    process.env.ids++;
   }
 
   createReadStream("./src/index.html").pipe(res)
